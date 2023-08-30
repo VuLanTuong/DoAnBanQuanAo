@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothes Shop</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    .background-radial-gradient {
+      height: 100%;
+      background-color: hsl(218, 41%, 15%);
+      background-image: radial-gradient(650px circle at 0% 0%,
+      hsl(219, 61%, 80%) 15%,
+      hsl(217, 77%, 34%) 35%,
+      hsl(219, 79%, 74%) 75%,
+      hsl(218, 95%, 60%) 80%,
+      transparent 100%),
+      radial-gradient(1250px circle at 100% 100%,
+              hsl(219, 61%, 80%) 15%,
+              hsl(217, 77%, 34%) 35%,
+              hsl(219, 79%, 74%) 75%,
+              hsl(218, 95%, 60%) 80%,
+              transparent 100%);
+    }
+
+    body {
+      background-color: black;
+      color: white;
+    }
+
+    .navbar {
+      color: white;
+      background-color: hsl(218, 41%, 15%);
+      background-image: radial-gradient(650px circle at 0% 0%,
+      hsl(219, 72%, 48%) 15%,
+      hsl(217, 77%, 34%) 35%,
+      hsl(219, 100%, 77%) 75%,
+      hsl(218, 100%, 33%) 80%,
+      transparent 100%),
+      radial-gradient(1250px circle at 100% 100%,
+              hsl(219, 72%, 48%) 15%,
+              hsl(217, 77%, 34%) 35%,
+              hsl(219, 100%, 79%) 75%,
+              hsl(218, 97%, 34%) 80%,
+              transparent 100%);
+    }
+
+    .nav-link {
+      color: white;
+    }
+
+    
+    .navbar-nav .nav-item {
+      margin-right: 90px;
+
+    }
+
+    .jumbotron {
+      background-color: white;
+      padding-top: 150px; /* Adjust as needed */
+      padding-bottom: 150px; /* Adjust as needed */
+      background-image: url("https://i.pinimg.com/564x/d1/66/2d/d1662d113e38959fb2ad69181daf72ce.jpg");
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+    }
+
+    .jumbotron h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .jumbotron p {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .jumbotron .btn-primary {
+      font-size: 18px;
+      padding: 15px 30px;
+    }
+
+    .collections {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .collections h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    .collections p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .collections .btn {
+      font-size: 18px;
+      padding: 10px 30px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    .navbar-nav .nav-item {
+      margin-left: 15px;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 800px;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+      height: 50px;
+    }
+
+    .search-bar button {
+      padding: 6px 10px;
+      border: none;
+      background-color: transparent;
+      color: hsl(218, 95%, 60%);
+    }
+
+    .search-bar button:hover {
+      cursor: pointer;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+  </style>
+</head>
+
+<body>
+<div class="background-radial-gradient" th:action="@{/homepage} " >
+<!--  <nav class="navbar navbar-expand-lg navbar-dark">-->
+<!--    <a class="navbar-brand" href="#">Clothes Shop</a>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--      <ul class="navbar-nav ml-auto justify-content-end align-items-center">-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="index.html">Home</a>-->
+<!--        </li>-->
+
+<!--          <li class="nav-item" >-->
+<!--            <a class="nav-link" href="products">Products</a>-->
+<!--          </li>-->
+
+
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="contact.html">Contact</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="blog.html">Cart</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--&lt;!&ndash;          <a class="nav-link" href="/login">Log in</a>&ndash;&gt;-->
+
+<!--          <div th:if="${account} != null">-->
+<!--            <div class="d-flex align-items-center">-->
+
+<!--              <div-->
+<!--                   style="border-top-left-radius: .1rem; border-bottom-left-radius: .1rem;">-->
+<!--                <a href="information">-->
+<!--                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"-->
+<!--                       alt="Avatar" class="img-fluid" style="width: 40px;" />-->
+
+<!--                </a>-->
+
+<!--&lt;!&ndash;                <div th:if="${customer} != null">&ndash;&gt;-->
+<!--&lt;!&ndash;                <i class="far fa-edit mb-5"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <a href="/userinformation">${customer?.getFullName()}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <p>Welcome, <span th:text="${customer?.getFullName()} ?: 'Guest'">Guest</span>!</p>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--              </div>-->
+
+<!--            </div>-->
+<!--          </div>-->
+<!--            <div th:if="${account} == null">-->
+<!--              <a class="btn btn-primary" href="/login" role="button">Log in</a>-->
+<!--            </div>-->
+
+
+
+<!--        </li>-->
+<!--      </ul>-->
+
+<!--    </div>-->
+<!--  </nav>-->
+
+  <div th:replace="fragments/header">
+
+  </div>
+  <div class="center">
+    <div class="search-bar center">
+      <input type="text" placeholder="Search product">
+      <button type="button" style="border: 3px solid white; margin-left: 20px; "><i class="fas fa-search">Search</i></button>
+    </div>
+  </div>
+  <br>
+  <div class="jumbotron" style="background-image: url(https://media.flytographer.com/uploads/2022/08/family-photo-ideas-flytographer-15.jpg);">
+    <h1 style="text-shadow: 0 0 5px #3d6eec, 0 0 7px #0000b5;">Welcome to our Clothes Shop</h1>
+    <p>Discover the latest fashion trends</p>
+    <a class="btn btn-primary" href="product.html" role="button">Shop Now</a>
+  </div>
+
+
+
+  <br><br><br><br><br><br>
+  <div class="container collections">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="collection-item product">
+          <div class="collection-image">
+            <img th:src='@{/static/image/1_567b8_master(2).jpg}'
+                 alt="Men's Collection">
+            <br>
+          </div>
+          <div class="collection-content">
+            <h2>Men's Collection</h2>
+            <p>Explore our stylish collection of men's clothing and accessories.</p>
+            <a class="btn btn-light" href="product.html" role="button">View Collection</a>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <div class="collection-item">
+          <div class="collection-image">
+            <img th:src='@{https://i.pinimg.com/564x/e5/ef/52/e5ef529c32b23b2c7c24a576204c5b58.jpg}' alt="Women's Collection" style="width: 70%; height: 70%;">
+          </div>
+          <div class="collection-content">
+            <h2>Women's Collection</h2>
+            <p>Discover our wide range of fashionable women's clothing and accessories.</p>
+            <a class="btn btn-light" href="product.html" role="button">View Collection</a>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <div class="collection-item">
+          <div class="collection-image">
+            <br><br>
+            <img th:src='@{https://i.pinimg.com/564x/a6/7d/3f/a67d3f9669444032018272ed85784955.jpg}' alt="Kids' Collection" style="width: 70%; height: 70%;">
+          </div>
+          <div class="collection-content">
+            <h2>Kids' Collection</h2>
+            <p>Shop for adorable and trendy clothing for your little ones.</p>
+            <a class="btn btn-light" href="product.html" role="button">View Collection</a>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <div class="col-md-6">
+        <div class="collection-item">
+          <div class="collection-image">
+            <br><br>
+            <img th:src='@{https://i.pinimg.com/564x/f0/4f/55/f04f55c197daa5ea7c427b48fd99138b.jpg}' alt="Kids' Collection">
+          </div>
+          <div class="collection-content">
+            <h2>New Collection</h2>
+            <p>Shop for adorable and trendy clothing for your little ones.</p>
+            <a class="btn btn-light" href="product.html" role="button">View Collection</a>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

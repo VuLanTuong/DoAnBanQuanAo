@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Personal Information Management</title>
+    <style>
+        .form-container {
+            max-width: 400px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+<section class="vh-100" th:object="${customer}" style="background-color: #f4f5f7;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-6 mb-4 mb-lg-0">
+                <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0">
+                        <div class="col-md-4 gradient-custom text-center text-white"
+                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                 alt="Avatar" class="img-fluid my-5" style="width: 80px;"/>
+                            <i class="far fa-edit mb-5"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                                <form  th:action="@{/information/{username}(username=${customer.account.userName})}" method="post" th:object="${customer}">
+                                <div th:if="${customer != null}">
+                                    <h4>User Information</h4>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name</label>
+                                        <input class="form-control" id="fullName" th:value="${customer.fullName}" th:field="${customer.fullName}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <input type="text" class="form-control" id="gender" th:value="${customer.gender ? 'Female' : 'Male'}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" th:value="${customer.contact.email}" th:field="${customer.contact.email}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" th:value="${customer.contact.phoneNumber}" th:field="${customer.contact.phoneNumber}"  disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" th:value="${customer.account.userName}" th:field="${customer.account.userName}" disabled>
+
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="avatar">Avatar</label>
+                                        <input type="file" class="form-control-file" id="avatar" disabled>
+                                    </div>
+
+                                    <button type="button" class="btn btn-secondary" onclick="enableEditing()">Edit</button>
+<!--                                    <button type="submit" class="btn btn-secondary" style="display: none;">Save</button>-->
+                                    <button type="submit" class="btn btn-secondary" style="display: none;">Save</button>
+
+                                </div>
+                                </form>
+                                <br>
+                                <form th:action="@{/logout}">
+<!--                                    <button type="submit" class="btn btn-secondary" style="display: none;">Save</button>-->
+                                    <button type="submit" class="btn btn-secondary">Log out</button>                                </form>
+
+                                <script>
+                                    function enableEditing() {
+                                        // Enable or disable input fields based on their current disabled state
+                                        let inputs = document.getElementsByTagName('input');
+                                        for (let i = 0; i < inputs.length; i++) {
+                                            inputs[i].disabled = !inputs[i].disabled;
+                                        }
+
+                                        // Enable or disable the file input field
+                                        // let fileInput = document.getElementById('avatar');
+                                        // fileInput.disabled = !fileInput.disabled;
+
+                                        // Toggle the buttons
+                                        let editButton = document.querySelector('.btn-secondary[onclick="enableEditing()"]');
+                                        editButton.style.display = 'none';
+
+
+                                        let saveButton = document.querySelector('.btn-secondary[type="submit"]');
+                                        saveButton.style.display = 'inline-block' ;
+
+                                        // let logoutButton = document.querySelector('.btn-secondary:last-child');
+                                        // logoutButton.style.display = 'none';
+                                    }
+
+                                    function redirectToEditPage() {
+                                        let editUrl = "http://localhost:8080/information/logout";
+                                        window.location.href = editUrl;
+                                    }
+
+                                    // function preventFormSubmit(event) {
+                                    //     event.preventDefault();
+                                    //     redirectToEditPage();
+                                    // }
+                                </script>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

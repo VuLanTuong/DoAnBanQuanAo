@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .product {
+            padding-top: 70px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product-image-big {
+            flex-basis: 50%;
+            max-width: 100%;
+            padding-right: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .heart-icon {
+            color: white;
+            border: 1px solid black;
+            padding: 5px;
+            border-radius: 50%;
+            background-color: black;
+            font-size: 24px;
+        }
+        .product-image-big img {
+            max-width: 100%;
+        }
+
+        .product-image-small {
+            width: 20%;
+
+        }
+        .image-small-wrapper {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            white-space: normal;
+            margin-left: 15px;
+        }
+        .image-small-wrapper img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-details {
+            font-family: sans-serif;
+            max-width: 100%;
+        }
+
+        .product-title {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .product .product-details h1::after{
+            content: '';
+            display: block;
+            width: 50px;
+            height: 1px;
+            background: #0b0b0b;
+            margin: 20px 0;
+        }
+        .product-size{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .swatch-element button {
+            margin-right: 15px;
+            margin-left: 15px;
+            background-color: rgb(254, 254, 255);
+            color: #000;
+            border: #000 solid 2px;
+            font-weight: bold;
+        }
+        .link-detail {
+            margin-top: 30px;
+        }
+        .add-to-c {
+            margin-right: 15px;
+            background-color: #000;
+            color: rgb(246, 249, 251);
+            border-radius: 7px;
+            font-weight: bold;
+        }
+        .link-detail::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: #0b0b0b;
+            margin: 20px 0;
+        }
+        .product-information {
+            margin-top: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+        .product-information p:nth-of-type(2){
+            font-size: 17px;
+        }
+        ul {
+            list-style: none;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('.image-small-wrapper').click(function() {
+                const newImageSrc = $(this).attr('src');
+                $('.big-image').attr('src', newImageSrc);
+            });
+        });
+    </script>
+</head>
+<body>
+<div th:replace="fragments/header">
+
+</div>
+<div class="container">
+
+    <div class="row product">
+        <div class="col-md-6">
+            <div class="product-image-big">
+                <img class=" big-image img-fluid" th:src="@{'/static/image/' + ${product.image[0]}}">
+            </div>
+            <div class="product-image-small d-flex flex-row">
+                <img class="image-small-wrapper" th:src="@{'/static/image/' + ${product.image[1]}}" alt="image-1">
+                <img class="image-small-wrapper" th:src="@{'/static/image/' + ${product.image[2]}}" alt="image-2">
+                <img class="image-small-wrapper" th:src="@{'/static/image/' + ${product.image[3]}}" alt="image-3">
+                <img class="image-small-wrapper" th:src="@{'/static/image/' + ${product.image[4]}}" alt="image-4">
+            </div>
+        </div>
+        <div class="col-md-6 description-product">
+            <div class="product-details row">
+                <div class="col-md-10">
+                    <h1 class="product-title font-weight-bold" th:text="${product.productName}"></h1>
+                </div>
+                <div class="col-md-2">
+                    <i class="fas fa-heart heart-icon"></i>
+                </div>
+            </div>
+            <h2 class="product-price" th:text="${#numbers.formatDecimal(product.price, 3, 'POINT',3, 'COMMA')} + '&#8363;'"></h2>
+            <div class="product-size">
+                <p>please select size</p>
+                <div class="row swatch-element">
+                    <button class="btn" type="button">S</button>
+                    <button class="btn" type="button">M</button>
+                    <button class="btn" type="button">L</button>
+                </div>
+            </div>
+            <div class="link-detail">
+                <a href="" class="btn add-to-c btnAddCard">add to bag</a>
+                <a href="" class="btn add-to-c btnBuyNow">buy now</a>
+            </div>
+            <div class="product-information">
+                <p>HEARTS TEE - Là mẫu áo thun ra mắt vào dịp Valentine 2023, lọt top danh sách các mẫu áo
+                    thun bán chạy nhất trên các sàn thương mại điện tử. Với phối màu lạ mắt HOT PINK - GREY, mẫu áo thun có form áo
+                    OVERSIZE ÂU MỸ sử dụng chất liệu COTTON 100% - 2 CHIỀU, sử dụng kỹ thuật IN LỤA tạo sự sắc nét và không bị chạy theo gân
+                    áo khi bị kéo giãn.</p>
+                <p>Chi tiết sản phẩm: </p>
+                <ul>
+                    <li>Form áo COVERSIZE ÂU MỸ. </li>
+                    <li>Định lượng: 250 gsm. </li>
+                    <li>100% cotton. </li>
+                    <li>Tag logo được gắn/thêu ở tay áo.</li>
+                    <li>Tem chống hàng giả của SWE được may trong sườn áo.</li>
+                    <li>Các bạn vui lòng tham khảo bảng size chart trước khi đặt hàng. </li>
+                    <li>* LƯU Ý: Hạn chế sử dụng máy sấy nhiệt cao để giữ form áo.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .position-relative {
+      /* Đảm bảo khung có kích thước phù hợp với hình ảnh */
+      display: inline-block;
+      position: relative;
+    }
+  </style>
+  <script>
+    const links = document.getElementsByTagName('a');
+
+    for (let i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function(event) {
+        event.preventDefault(); // Ngăn chặn chuyển hướng mặc định của liên kết
+
+        const href = this.getAttribute('href');
+        const urlParams = new URLSearchParams(href.split('?')[1]);
+        const productID = urlParams.get('id');
+
+        window.location.href = 'product_detail.html?id=' + productID;
+      });
+    }
+  </script>
+</head>
+<body>
+
+<div th:replace="fragments/header">
+
+</div>
+<div class="container-fluid text-center">
+<!--  <h1>Welcome!</h1>-->
+<!--  <h2><b>Clothes Shop</b></h2>-->
+  <div class="row">
+
+    <div th:each="product : ${listProduct}" class="col-md-3 position-relative" th:method="get">
+      <div class="product">
+        <a th:href="@{'product_detail/' + ${product.productID}}"><img th:src="@{'/static/image/' + ${product.image[0]}}" alt="Sản phẩm" class="img-fluid"></a>
+<!--          <button class="btn btn-primary btn-on-image">Nút</span></button>-->
+          <p class="font-weight-bold text-center" th:text="${product.productName}"></p>
+          <p class="font-weight-bold text-center" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 3, 'COMMA')} + '&#x0111;'"></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

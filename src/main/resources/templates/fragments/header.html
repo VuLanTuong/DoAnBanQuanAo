@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <style>
+    .navbar {
+      color: white;
+      background-color: hsl(218, 41%, 15%);
+      background-image: radial-gradient(650px circle at 0% 0%,
+      hsl(219, 72%, 48%) 15%,
+      hsl(217, 77%, 34%) 35%,
+      hsl(219, 100%, 77%) 75%,
+      hsl(218, 100%, 33%) 80%,
+      transparent 100%),
+      radial-gradient(1250px circle at 100% 100%,
+              hsl(219, 72%, 48%) 15%,
+              hsl(217, 77%, 34%) 35%,
+              hsl(219, 100%, 79%) 75%,
+              hsl(218, 97%, 34%) 80%,
+              transparent 100%);
+    }
+
+    .nav-link .navbar-nav {
+      color: white;
+    }
+
+
+    .nav-link {
+      color: white;
+    }
+    .navbar-nav .nav-item {
+      margin-right: 90px;
+
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    .navbar-nav .nav-item {
+      margin-left: 15px;
+    }
+
+
+  </style>
+</head>
+
+
+<body>
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="homepage">Clothes Shop</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto justify-content-end align-items-center">
+      <li class="nav-item">
+        <a class="nav-link" href="homepage">Home</a>
+      </li>
+
+      <li class="nav-item" >
+        <a class="nav-link" href="products">Products</a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cart</a>
+      </li>
+      <li class="nav-item">
+        <!--          <a class="nav-link" href="/login">Log in</a>-->
+
+        <div th:if="${account} != null">
+          <div class="d-flex align-items-center">
+
+            <div
+                    style="border-top-left-radius: .1rem; border-bottom-left-radius: .1rem;">
+              <a href="information">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                     alt="Avatar" class="img-fluid" style="width: 40px;" />
+
+              </a>
+
+              <!--                <div th:if="${customer} != null">-->
+              <!--                <i class="far fa-edit mb-5"></i>-->
+              <!--                  <a href="/userinformation">${customer?.getFullName()}</a>-->
+              <!--&lt;!&ndash;                <p>Welcome, <span th:text="${customer?.getFullName()} ?: 'Guest'">Guest</span>!</p>&ndash;&gt;-->
+              <!--                </div>-->
+            </div>
+
+          </div>
+        </div>
+        <div th:if="${account} == null">
+          <a class="btn btn-primary" href="/login" role="button">Log in</a>
+        </div>
+
+
+
+      </li>
+    </ul>
+
+  </div>
+</nav>
+</body>
+</html>
